@@ -1,22 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom"; // allows us to switch between pages without having to do refresh or reload
+import {
+  StyledNavBar,
+  StyledNavBrand,
+  StyledNavItems,
+  StyledLink,
+} from "../styled/NavBar";
+import { Accent } from "../styled/Random";
 
 export default function Navbar() {
   return (
-    <nav>
-      <div>
+    <StyledNavBar>
+      <StyledNavBrand>
         <Link to="/">
-          Learn.Build.<span>Type.</span>
+          Learn.Build.<Accent>Type.</Accent>
         </Link>
-      </div>
-      <ul>
+      </StyledNavBrand>
+      <StyledNavItems>
         <li>
-          <Link to="/">Home</Link>{" "}
+          <StyledLink to="/">Home</StyledLink>{" "}
         </li>
         <li>
-          <Link to="/highScores">HighScores</Link>{" "}
+          <StyledLink to="/highScores">HighScores</StyledLink>{" "}
         </li>
-      </ul>
-    </nav>
+      </StyledNavItems>
+    </StyledNavBar>
   );
 }
