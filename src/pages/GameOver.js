@@ -35,10 +35,14 @@ export default function GameOver({ history }) {
   return (
     <div>
       <h1>Game Over</h1>
+      <h2>{scoreMessage}</h2>
       <StyledCharacter>{score}</StyledCharacter>
-      <p>{scoreMessage}</p>
-      <StyledLink to="/">Go Home</StyledLink>
-      <StyledLink to="/game">Play Again?</StyledLink>
+      <div>
+        <StyledLink to="/">Go Home</StyledLink>
+      </div>
+      <div>
+        <StyledLink to="/game">Play Again?</StyledLink>
+      </div>
     </div>
   );
 }
