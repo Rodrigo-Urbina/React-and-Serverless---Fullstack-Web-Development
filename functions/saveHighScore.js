@@ -1,13 +1,4 @@
-require("dotenv").config();
-
-const Airtable = require("airtable");
-
-Airtable.configure({
-  apiKey: process.env.AIRTABLE_API_KEY,
-});
-
-const base = Airtable.base(process.env.AIRTABLE_BASE);
-const table = base.table(process.env.AIRTABLE_TABLE);
+const { table, getHighScores } = require("./utils/airtable");
 
 exports.handler = async (event) => {
   console.log(event);
@@ -28,17 +19,11 @@ exports.handler = async (event) => {
   }
 
   try {
-    const records = await table
-      .select({
-        sort: [{ field: "score", direction: "desc" }],
-      })
-      .firstPage();
-    const formattedRecords = records.map((record) => ({
-      id: record.id,
-      fields: record.fields,
-    }));
+    const records = await getHighScores(false);
+    console.log(records);
+    const lowestRecord = records[9];
+    console.log(lowestRecord);
 
-    const lowestRecord = formattedRecords[9];
     if (
       typeof lowestRecord.fields.score === "undefined" ||
       score > lowestRecord.fields.score
